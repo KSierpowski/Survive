@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float hP = 100;
+    [SerializeField] float enemyHP = 100;
 
 
 
     public void TakeDamage(float damage)
     {
 
-        hP -= damage;
+        enemyHP -= damage;
 
-        if (hP <= 0)
+        if (enemyHP <= 0)
         {
             Destroy(gameObject);
         }

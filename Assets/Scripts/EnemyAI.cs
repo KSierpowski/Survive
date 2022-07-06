@@ -9,10 +9,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float chaseRange = 5f;
 
 
-    bool isProvoked = false;
 
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
+
+    bool isProvoked = false;
 
     void Start()
     {
@@ -57,7 +58,7 @@ public class EnemyAI : MonoBehaviour
     void AttackTarget()
     {
         GetComponent<Animator>().SetBool("attack", true);
-        Debug.Log("You are attacked!");
+    
     }
 
 
