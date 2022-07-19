@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitEffect;
     [SerializeField] Ammo ammoSlot;
+    [SerializeField] AmmoType ammoType;
     [SerializeField] float timeBetweenShoots = 0.5f;
 
 
@@ -23,20 +24,20 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && canShoot==true)
+        if (Input.GetButtonDown("Fire1") && canShoot == true)
         {
-           StartCoroutine(Shoot());
+            StartCoroutine(Shoot());
         }
     }
 
     IEnumerator Shoot()
     {
         canShoot = false;
-        if (ammoSlot.getCurrentAmmo() > 0)
+        if (ammoSlot.getCurrentAmmo(ammoType) > 0)    //to sa te ammoType, ktore wyzej mamy w serialized field
         {
             ProcessRaycast();
             PlayMuzzleFlash();
-            ammoSlot.ReduceCurrentAmmo();
+            ammoSlot.ReduceCurrentAmmo(ammoType);
         }
         yield return new WaitForSeconds(timeBetweenShoots);
         canShoot = true;
