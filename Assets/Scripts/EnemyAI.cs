@@ -11,6 +11,8 @@ public class EnemyAI : MonoBehaviour
 
     EnemyHealth health;
 
+    CapsuleCollider body;
+
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
 
@@ -20,6 +22,7 @@ public class EnemyAI : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<EnemyHealth>();
+        body = GetComponent<CapsuleCollider>();
     }
 
 
@@ -29,6 +32,8 @@ public class EnemyAI : MonoBehaviour
         {
             enabled = false;
             navMeshAgent.enabled = false;
+            body.enabled = false;
+            
         }
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
@@ -65,7 +70,10 @@ public class EnemyAI : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("attack", false);
         GetComponent<Animator>().SetTrigger("move");
-        navMeshAgent.SetDestination(target.position);
+        if (navMeshAgent.enabled)
+        {
+            navMeshAgent.SetDestination(target.position);
+        }
     }
     void AttackTarget()
     {
