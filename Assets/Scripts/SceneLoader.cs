@@ -7,7 +7,8 @@ public class SceneLoader : MonoBehaviour
 {
     public void ReloadGame()
     {
-        SceneManager.LoadScene(0);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
 
         Time.timeScale = 1;
     }
