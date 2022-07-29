@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
+   
     [SerializeField] float chaseRange = 5f;
     [SerializeField] float turnSpeed = 5f;
 
     EnemyHealth health;
+    Transform target;
 
     CapsuleCollider body;
 
@@ -23,6 +24,7 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<EnemyHealth>();
         body = GetComponent<CapsuleCollider>();
+        target = FindObjectOfType<PlayerHealth>().transform;
     }
 
 
